@@ -21,3 +21,8 @@ Kort: wat er besloten is, waarom, en wanneer. Het volledige plan staat in het Cl
 | 2026-11-20 | Mail: tot Fase 4 de standaard-SMTP van Supabase (alleen Bart); vanaf Fase 4 Resend met een eigen domein (free: 100 per dag, 3.000 per maand) | De standaard-SMTP mailt alleen naar teamleden, 2 per uur. Het domein kan daardoor tot Fase 4 wachten. |
 | 2026-11-19 | Logins en tokens doet Bart zelf in de terminal, nooit via de chat | Beveiliging; Claude Code werkt met de bestaande CLI-sessies |
 | 2026-11-20 | Tot Fase 5 mag een push naar `main` automatisch naar Vercel-productie deployen, zonder akkoord per push | Er zijn nog geen echte gebruikers en het is alleen dev-data, dus een akkoord per push zou alleen vertragen. Vanaf Fase 5 is een productiedeploy weer een chokepoint. |
+| 2026-11-20 | Samengestelde FK's `(x_id, organisatie_id)` tussen tenant-tabellen | Een tweede slot naast RLS: een verwijzing naar een andere organisatie is onmogelijk, ook via de service role of een bug |
+| 2026-11-20 | Het scheidsrechterstoken in een eigen tabel `wedstrijd_token` (alleen beheerder) | `wedstrijd` is publiek leesbaar; een kolom zou het token lekken |
+| 2026-11-20 | De platformbeheerder in een eigen tabel; telt in `is_lid()` als lid van elke organisatie | Support en "alles inzien" zonder lidmaatschap per organisatie |
+| 2026-11-20 | Conceptseizoenen voorlopig publiek leesbaar | Geen gevoelige data; het publiceren van het programma volgt in Fase 3 |
+| 2026-11-20 | Een scheidsrechter wijzigt van een wedstrijd alleen de status (gepland/bezig/bevestigd); alleen de beheerder voert een handmatige uitslag in of verwijdert een uitslag | Kerngegevens blijven bij het bestuur; afgedwongen in triggers |

@@ -40,3 +40,26 @@
   Fase 5 (vastgelegd in CLAUDE.md, chokepoint 3, en in docs/beslissingen.md).
 
 **Fase 0 afgerond.** Volgende: Fase 1 (stamdata, fasemodel, `organisatie_lid` + `is_lid()`, RLS).
+
+## Fase 1 — stamdata, fasemodel, RLS, triggers
+- [x] Migraties geschreven (2026-11-20), syntax gecontroleerd met libpg-query:
+  - `20261120120000_schema_stamdata_fasemodel.sql`: alle tabellen, samengestelde FK's
+    (x_id, organisatie_id), zodat er geen verwijzingen tussen organisaties mogelijk zijn
+  - `20261120120100_is_lid_en_rls.sql`: is_lid(), is_platform_beheerder(), RLS + policies
+  - `20261120120200_triggers_score_audit.sql`: score, strafschoppen, bevestigen,
+    scheidsrechtergrenzen, audit
+- [x] Akkoord van Bart op de RLS en is_lid() (2026-11-20), inclusief de 3 afwijkingen
+- [x] `on delete restrict` → `no action` (restrict brak het cascade-verwijderen van een organisatie)
+- [x] `supabase db push` door Bart (2026-11-20): `npx supabase db push --remote=vwvwjtlxjgycvxrhmvgn`.
+  Er werd geen wachtwoord gevraagd in zijn terminal. Met alleen `--remote` vindt CLI 3.2 de link niet;
+  vanuit Claude Code bleef het commando hangen.
+- [x] `@supabase/supabase-js` geïnstalleerd; `tests/helpers/supabase.ts`, `tests/isolatie.test.ts`
+  (alle tenant-tabellen × rollen), `tests/triggers.test.ts` geschreven; tsc + lint schoon
+- [x] Tests groen: 4 bestanden, 183 tests (2026-11-20). Na afloop geen `test-`-organisaties of
+  testgebruikers over in klassement-dev.
+- [x] CLAUDE.md + beslissingen.md bijgewerkt (wedstrijd_token, platform_beheerder,
+  startdatum/einddatum, samengestelde FK's)
+- [x] Afsluiting: build → lint → test → commit → push
+
+**Fase 1 afgerond.** Volgende: Fase 2 (beheer: organisatie, seizoenswizard, locaties/velden/
+speelmomenten, teams, spelers, CSV-import, huisstijl).

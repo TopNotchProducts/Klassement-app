@@ -81,7 +81,9 @@ Het *waarom* achter beslissingen staat in `docs/beslissingen.md`. Dit bestand be
 - Elke nieuwe tenant-tabel krijgt in **dezelfde commit**:
   - `organisatie_id not null`;
   - RLS aan, met policies via `is_lid()`;
-  - een isolatietest.
+  - een isolatietest;
+  - verwijzingen naar andere tenant-tabellen via een samengestelde FK
+    `(x_id, organisatie_id) → x(id, organisatie_id)`.
 - Geen geboortedatum. Een foto alleen tonen met de toestemmingsvlag.
 - Datum en tijd altijd in `Europe/Amsterdam` (de server draait in UTC).
 
@@ -128,7 +130,7 @@ Het *waarom* achter beslissingen staat in `docs/beslissingen.md`. Dit bestand be
 ### Rollen
 | Rol | Toegang |
 |---|---|
-| `platform_beheerder` (Bart) | Organisaties aanmaken, support, alles inzien |
+| `platform_beheerder` (Bart) | Organisaties aanmaken, support, alles inzien (tabel `platform_beheerder`; telt in `is_lid()` als lid van elke organisatie) |
 | `beheerder` (bestuur) | Alles binnen de eigen organisatie |
 | `scheidsrechter` | Token-link per wedstrijd **of** inloggen en dan alle wedstrijden van de organisatie zien. Uitslag invoeren en altijd achteraf kunnen aanpassen. Geen vaste toewijzing. |
 | `aanvoerder` | Spelerslijst vooraf, optioneel per organisatie. Blokkeert nooit een wedstrijd. |
@@ -144,7 +146,8 @@ van meerdere organisaties.
 - `speelmoment` (seizoen, weekdag/datum, starttijden[], velden[]): instelbaar door de beheerder
 - `team`: stabiele identiteit met een muteerbare naam. **Geen klasse-veld.**
 - `speler` (naam, rugnummer, verborgen, foto_toestemming). **Geen geboortedatum.**
-- `seizoen` (naam, start, eind, status: concept/actief/afgesloten)
+- `seizoen` (naam, startdatum, einddatum, status: concept/actief/afgesloten). Conceptseizoenen
+  zijn voorlopig publiek leesbaar; publiceren volgt in Fase 3.
 
 ### Datamodel — fasemodel
 - `onderdeel` (seizoen, naam, vorm: `competitie` | `toernooi`, volgorde)
@@ -157,7 +160,8 @@ van meerdere organisaties.
 - `bracket` (fase, naam, label_prefix)
 - `wedstrijd` (organisatie, fase, poule|bracket, ronde, slot, veld, datum, starttijd,
   thuis_team, uit_team (beide nullable bij een knockout-placeholder), status, label,
-  winnaar_naar_wedstrijd_id, winnaar_naar_slot, scheidsrechter_token)
+  winnaar_naar_wedstrijd_id, winnaar_naar_slot). Het scheidsrechterstoken staat in
+  `wedstrijd_token` (alleen voor de beheerder), omdat `wedstrijd` publiek leesbaar is.
 - **Status:** `gepland` → `bezig` → `bevestigd`, of `afgelast` | `uitgesteld` | `gestaakt`.
 - `wedstrijd_event` (wedstrijd, type, team, speler nullable, minuut nullable). Types in v1:
   `doelpunt`, `eigen_doelpunt`, `doelpunt_onbekend`, `geel`, `groen`, `rood`.
