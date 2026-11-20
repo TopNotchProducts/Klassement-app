@@ -19,11 +19,10 @@
 - [x] Vercel-project `top-notch-products-projects/klassement` aangemaakt + gelinkt
   (`.vercel/` is ignored). `vercel link` voegde `VERCEL_OIDC_TOKEN` toe aan `.env.local`.
 - [x] GitHub-repo `TopNotchProducts/Klassement-app`, remote `origin` toegevoegd
-- [ ] Push geweigerd (opnieuw geprobeerd 2026-11-20): de opgeslagen GitHub-credential (osxkeychain,
-  OAuth-app) mist de scope `workflow` voor `.github/workflows/ci.yml`. Bart moet opnieuw inloggen
-  met die scope. Homebrew ontbreekt, dus gh via de .pkg van cli.github.com → `gh auth login` →
-  `gh auth setup-git`. ← HIER
-- [ ] Vercel aan GitHub koppelen
+- [x] Push gelukt (2026-11-20). gh 2.105.0 staat in `/usr/local/bin` (er is geen Homebrew), en
+  Bart is ingelogd met de scope `workflow`. CI is groen.
+- [x] CI-actions naar checkout@v7 / setup-node@v7 (de Node 20-deprecatie-annotatie)
+- [ ] Vercel aan GitHub koppelen ← HIER
 - [ ] Vercel env-vars (dev-waarden) via `npx vercel env add`, door Bart
 - [x] Permissietest `git push --force --dry-run`: eerste poging mislukt (sessie gestart in `~`).
   Herhaald 2026-11-20 vanuit de projectmap: Bart kreeg de vraag. Geslaagd.
