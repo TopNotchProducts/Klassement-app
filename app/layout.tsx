@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -23,7 +24,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="nl"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {/* Cache Components: alles wat sessie- of requestdata leest, staat binnen deze grens. */}
+        <Suspense fallback={<p className="p-6 text-zinc-500">Laden…</p>}>{children}</Suspense>
+      </body>
     </html>
   );
 }

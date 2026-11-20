@@ -63,3 +63,29 @@
 
 **Fase 1 afgerond.** Volgende: Fase 2 (beheer: organisatie, seizoenswizard, locaties/velden/
 speelmomenten, teams, spelers, CSV-import, huisstijl).
+
+## Fase 2 — beheer
+- [x] Auth: `@supabase/ssr`, `lib/supabase/{client,server,admin}.ts`, `proxy.ts` (getClaims),
+  `/login` (magic link, geen self-signup), `/auth/callback` (PKCE), `/uitloggen`
+- [x] Typed DB-client: `lib/supabase/database.types.ts` (`npm run types` na elke migratie)
+- [x] `/platform`: organisatie aanmaken (slug-check, gereserveerde slugs) + beheerder toevoegen
+- [x] `/[org]/beheer`: layout met huisstijlkleuren, tabs, overzicht met stappenlijst
+- [x] Locaties en velden, Teams (bulk toevoegen), Seizoenen (wizard + detail + indelen),
+  speelmomenten, Spelers (selectie per seizoen, overschrijven), CSV-import (controleren →
+  importeren), Leden (rollen), Huisstijl (naam, kleuren, logo-upload)
+- [x] Migraties `20261120150000_seizoenswizard.sql` (maak_seizoen, deel_klassen_in; security
+  invoker, geen policy-wijziging) en `20261120150100_storage_logo.sql` (publieke bucket `logo`,
+  upload alleen server-side met de service role)
+- [x] Unit-tests csv/slug; `tests/seizoenswizard.test.ts` geschreven
+- [x] Bart: db push (3 migraties, incl. `20261120160000_maak_seizoen_optionele_datums.sql`: datums
+  optioneel; zonder default vond PostgREST de functie niet)
+- [x] Bart: Supabase Auth → URL Configuration (localhost:3000 + *.vercel.app)
+- [x] Bart is platformbeheerder in klassement-dev (`scripts/maak-platformbeheerder.mts`)
+- [x] `/auth/confirm` (verifyOtp met token_hash), nodig voor Resend-template en voor de e2e-login
+- [x] build/lint/test groen (7 bestanden, 195 tests)
+- [x] E2E-doorloop via de UI (Playwright, scratchpad-script): platform maakt org + beheerder;
+  beheerder zet locatie/velden, 6 teams, seizoen met 2 klassen + beker, indeling 3/3,
+  speelmoment, spelers + CSV-import, huisstijl op. DB-controle klopt; daarna opgeruimd.
+  Geen horizontaal scrollen op 360 px. Screenshots: `docs/screenshots/fase-2/`
+- [ ] Klaar-criterium "zonder hulp": geautomatiseerd aangetoond; **Bart (en bij voorkeur
+  iemand van het bestuur) loopt het zelf door** ← HIER

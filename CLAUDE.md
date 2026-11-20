@@ -71,6 +71,9 @@ Het *waarom* achter beslissingen staat in `docs/beslissingen.md`. Dit bestand be
   gaat productie alleen via een chokepoint.
 - Tests (Vitest) draaien tegen dev, met eigen testorganisaties (slug-prefix `test-`). Ze
   ruimen hun eigen data op en raken nooit andere organisaties.
+- Na elke migratie: `npm run types` (genereert `lib/supabase/database.types.ts`).
+- Elke beheer-server-action begint met `beheerActie()`/`vereisBeheerder()` (een action is een
+  publiek endpoint). De service role alleen ná die check (accounts, logo-upload).
 
 ### Repo
 - Single repo, werken op `main`, kleine commits, commitberichten in het Nederlands.
