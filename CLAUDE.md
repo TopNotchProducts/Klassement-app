@@ -89,7 +89,9 @@ Het *waarom* achter beslissingen staat in `docs/beslissingen.md`. Dit bestand be
 1. Migraties of scripts tegen **productie** (`supabase db push`, import, service-role-scripts).
    Bart voert die zelf uit.
 2. Wijzigingen aan RLS-policies of `is_lid()`. Toon de diff en wacht op akkoord.
-3. Productiedeploy, force-push, `rm -rf`, `supabase db reset`.
+3. Productiedeploy, force-push, `rm -rf`, `supabase db reset`. **Uitzondering tot Fase 5:** een
+   push naar `main` (die Vercel automatisch naar productie deployt) mag, want er zijn nog geen
+   echte gebruikers en de app gebruikt alleen `klassement-dev`. Vanaf Fase 5 vervalt dit.
 4. Het WAC-importscript en de controle na parallel draaien.
 5. **UX-akkoord** van Bart (en bij voorkeur iemand van het bestuur) op de scheidsrechtersflow
    en de toernooiconfiguratie, op basis van screenshots.

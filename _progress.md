@@ -36,4 +36,7 @@
   - Vercel maakte deze eerste deploy automatisch **production** (de eerste deploy van een
     project wordt altijd production), ook zonder `--prod`. Bart is geïnformeerd.
   - Deployment protection staat aan. Controleren gaat met `npx vercel curl … --deployment <url>`.
-- [ ] Afsluiting: build/lint/test groen. Push wacht op akkoord van Bart (een push = een prod-deploy). ← HIER
+- [x] Afsluiting: build/lint/test groen en gepusht. Bart koos (2026-11-20): pushen naar `main` mag tot
+  Fase 5 (vastgelegd in CLAUDE.md, chokepoint 3, en in docs/beslissingen.md).
+
+**Fase 0 afgerond.** Volgende: Fase 1 (stamdata, fasemodel, `organisatie_lid` + `is_lid()`, RLS).
