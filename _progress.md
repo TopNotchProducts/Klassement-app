@@ -21,11 +21,12 @@
 - [x] GitHub-repo `TopNotchProducts/Klassement-app`, remote `origin` toegevoegd
 - [ ] Push geweigerd (opnieuw geprobeerd 2026-11-20): de opgeslagen GitHub-credential (osxkeychain,
   OAuth-app) mist de scope `workflow` voor `.github/workflows/ci.yml`. Bart moet opnieuw inloggen
-  met die scope (bijv. `brew install gh` → `gh auth login` → `gh auth setup-git`). ← HIER
+  met die scope. Homebrew ontbreekt, dus gh via de .pkg van cli.github.com → `gh auth login` →
+  `gh auth setup-git`. ← HIER
 - [ ] Vercel aan GitHub koppelen
 - [ ] Vercel env-vars (dev-waarden) via `npx vercel env add`, door Bart
-- [ ] Permissietest `git push --force --dry-run`: eerste poging MISLUKT (sessie gestart in `~`).
-  Herhaald 2026-11-20 vanuit de projectmap. **Bart bevestigt of er een vraag kwam.** ← HIER
+- [x] Permissietest `git push --force --dry-run`: eerste poging mislukt (sessie gestart in `~`).
+  Herhaald 2026-11-20 vanuit de projectmap: Bart kreeg de vraag. Geslaagd.
 - [x] Keys opgehaald door Bart.
 - [x] `vitest.config.ts` → `.mts` (de Vite-waarschuwing over de CJS-config is weg)
 - [x] `.env.example` (wordt meegecommit) + README, commit `1340e19`
