@@ -8,7 +8,8 @@
 - [x] Stap 3 `klassement-dev` aangemaakt en gelinkt door Bart. Ref `vwvwjtlxjgycvxrhmvgn`,
   eu-central-1, ACTIVE_HEALTHY
 - [x] Stap 4 `supabase init` (config.toml, migrations/); `.env*` en `supabase/.temp` in .gitignore
-  - [ ] `.env.local`: de URL staat erin. **Bart vult ANON_KEY en SERVICE_ROLE_KEY in.** ← HIER
+  - [x] `.env.local`: URL, ANON_KEY en SERVICE_ROLE_KEY gevuld; `tests/supabase-verbinding.test.ts`
+    draait en slaagt (2026-11-20)
 - [x] Scaffold Next.js 16.4.6 (TS, Tailwind 4, ESLint, App Router, geen src/), Vitest 5.1.1, CI
   (.github/workflows/ci.yml)
   - `@types/node` ^24 (dat is nodig voor de peer-dep van Vitest 5; Node 24 lokaal)
@@ -17,9 +18,16 @@
 - [x] git init, eerste commit `b8f2acc`
 - [x] Vercel-project `top-notch-products-projects/klassement` aangemaakt + gelinkt
   (`.vercel/` is ignored). `vercel link` voegde `VERCEL_OIDC_TOKEN` toe aan `.env.local`.
-- [ ] GitHub-repo (gh CLI niet geïnstalleerd) → remote toevoegen → push → Vercel aan GitHub koppelen
+- [x] GitHub-repo `TopNotchProducts/Klassement-app`, remote `origin` toegevoegd
+- [ ] Push geweigerd (opnieuw geprobeerd 2026-11-20): de opgeslagen GitHub-credential (osxkeychain,
+  OAuth-app) mist de scope `workflow` voor `.github/workflows/ci.yml`. Bart moet opnieuw inloggen
+  met die scope (bijv. `brew install gh` → `gh auth login` → `gh auth setup-git`). ← HIER
+- [ ] Vercel aan GitHub koppelen
 - [ ] Vercel env-vars (dev-waarden) via `npx vercel env add`, door Bart
-- [ ] Permissietest `git push --force --dry-run`: uitgevoerd. Bart moet bevestigen dat er een
-  vraag kwam. (Er was geen remote, dus git faalde daarna sowieso.)
+- [ ] Permissietest `git push --force --dry-run`: eerste poging MISLUKT (sessie gestart in `~`).
+  Herhaald 2026-11-20 vanuit de projectmap. **Bart bevestigt of er een vraag kwam.** ← HIER
+- [x] Keys opgehaald door Bart.
+- [x] `vitest.config.ts` → `.mts` (de Vite-waarschuwing over de CJS-config is weg)
+- [x] `.env.example` (wordt meegecommit) + README, commit `1340e19`
 - [ ] Deploy van de lege app + verbinding met klassement-dev verifiëren
 - [ ] Afsluiting: build → lint → test → commit → push
