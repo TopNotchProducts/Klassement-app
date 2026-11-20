@@ -22,12 +22,18 @@
 - [x] Push gelukt (2026-11-20). gh 2.105.0 staat in `/usr/local/bin` (er is geen Homebrew), en
   Bart is ingelogd met de scope `workflow`. CI is groen.
 - [x] CI-actions naar checkout@v7 / setup-node@v7 (de Node 20-deprecatie-annotatie)
-- [ ] Vercel aan GitHub koppelen ← HIER
-- [ ] Vercel env-vars (dev-waarden) via `npx vercel env add`, door Bart
+- [x] Vercel aan GitHub gekoppeld (`vercel git connect`). **Let op:** elke push naar `main` deployt
+  nu automatisch naar Vercel-productie.
+- [x] Vercel env-vars (dev-waarden) door Bart, voor Production + Preview. SERVICE_ROLE_KEY als
+  Secret, de twee NEXT_PUBLIC_* als Config.
 - [x] Permissietest `git push --force --dry-run`: eerste poging mislukt (sessie gestart in `~`).
   Herhaald 2026-11-20 vanuit de projectmap: Bart kreeg de vraag. Geslaagd.
 - [x] Keys opgehaald door Bart.
 - [x] `vitest.config.ts` → `.mts` (de Vite-waarschuwing over de CJS-config is weg)
 - [x] `.env.example` (wordt meegecommit) + README, commit `1340e19`
-- [ ] Deploy van de lege app + verbinding met klassement-dev verifiëren
-- [ ] Afsluiting: build → lint → test → commit → push
+- [x] Deploy van de lege app + de verbinding geverifieerd (2026-11-20): `/api/health` op
+  `klassement-d4vrmpsce-…vercel.app` geeft `{"ok":true,"supabase":"bereikbaar"}`.
+  - Vercel maakte deze eerste deploy automatisch **production** (de eerste deploy van een
+    project wordt altijd production), ook zonder `--prod`. Bart is geïnformeerd.
+  - Deployment protection staat aan. Controleren gaat met `npx vercel curl … --deployment <url>`.
+- [ ] Afsluiting: build/lint/test groen. Push wacht op akkoord van Bart (een push = een prod-deploy). ← HIER
