@@ -89,3 +89,17 @@ speelmomenten, teams, spelers, CSV-import, huisstijl).
   Geen horizontaal scrollen op 360 px. Screenshots: `docs/screenshots/fase-2/`
 - [ ] Klaar-criterium "zonder hulp": geautomatiseerd aangetoond; **Bart (en bij voorkeur
   iemand van het bestuur) loopt het zelf door** ← HIER
+
+## Fase 3 — programma, ranglijsten, toernooien
+- Fase 2 handmatige doorloop door Bart/bestuur: Bart koos om door te gaan naar Fase 3 (2026-11-20);
+  blijft open als controle.
+- [ ] **WAC-fixture van Bart**: `tests/fixtures/wac-beker-2026-27.csv` (wedstrijden) en
+  `tests/fixtures/wac-bekerstand-2026-27.csv` (verwachte v_bekerstand) ← WACHT OP BART
+- [x] `lib/regelset.ts` (zod; loting in regelset.loting, geen aparte tabel) en `lib/ranglijst.ts`
+  (totaal/gemiddelde, tiebreakers incl. onderling-mini-stand, kaartpunten groen 1/geel 1/rood 3,
+  correcties, waarschuwingen). WAC-controlegeval als unit-test groen.
+- [x] `lib/roundrobin.ts` (cirkelmethode, heen/terug, planning over speelmomenten: 1× per avond,
+  rondevolgorde) en `lib/knockout.ts` (seeding, byes, winnaar_naar). 20 tests groen.
+- [ ] Migratie: status `concept`, winnaar-doorstroom-trigger, knockout bevestigen vereist winnaar
+- [ ] UI: programma genereren/schuiven/publiceren, handmatige fase + CSV, standen, toernooisjablonen,
+  bewerkbare boom, doorstroming bevestigen
